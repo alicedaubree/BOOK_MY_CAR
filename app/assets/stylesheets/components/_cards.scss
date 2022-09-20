@@ -1,0 +1,69 @@
+.card-car {
+  overflow: hidden;
+  background: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  transition: transform 0.5s;
+}
+
+.cards {
+  background-color: white;
+}
+
+.cards a {
+  text-decoration: none;
+}
+
+.cards-index {
+  background-color: white;
+
+}
+
+.cards-index a {
+  text-decoration: none;
+}
+.card-car:hover {
+  transform: scale(1.05);
+}
+
+.card-car > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-car h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-car p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-car a {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  text-decoration: none !important;
+}
+
+
+
+.card-car .card-car-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-car-infos .card-car-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}

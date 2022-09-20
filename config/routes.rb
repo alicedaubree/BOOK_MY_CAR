@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "car#home"
+  root to: "cars#index"
   get "profile", to: "pages#profil"
-  resources :car do
-    resources :booking
+  resources :cars do
+    resources :bookings
     # , only: [ :create,:destroy ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
