@@ -1,6 +1,10 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  // position: fixed;
+  // top: 0;
+  // width:100%;
+  // z-index: 999;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +13,23 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-brand-title {
+  width: 40px;
+  color: $purple;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+.nav-item a {
+  color: $purple;
+}
+
+.nav-item a:hover {
+  color: $green;
+  font-weight: bold;
+}
+
+.navbar-title {
+  text-decoration: none;
 }

@@ -1,0 +1,40 @@
+<div class="container">
+
+<%= form_with url: cars_path, method: :get, class: "d-flex my-4" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Recherchez un lieu par adresse ou activité"
+  %>
+  <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+<div class="col-12 col-lg-4">
+    <div class="cards-index">
+      <% @cars.each do |car| %>
+      <%= link_to(car_path(car.id)) do %>
+        <div class="card-car mb-5">
+          <%=  cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill  %>
+          <div class="card-car-infos p-3">
+            <div>
+              <h2 class="mb-2"><%= car.title %></h2>
+              <p><%= "#{car.description.first(150)}..." %></p>
+            </div>
+          <%= cl_image_tag car.user.photo.key,  width: 40, height: 40, crop: :fill, class: "card-car-user avatar-bordered" %>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+</div>
+  <div class="col-12 col-lg-8">
+    <div class="rounded-angle" style="width: 100%; height: 600px;"
+    class="map-index"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
+</div>
