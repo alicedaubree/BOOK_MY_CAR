@@ -1,0 +1,4 @@
+<%= link_to(car_path(car.id), class: "map-info-box") do %>
+  <p><%= car.title %></p>
+  <%=  cl_image_tag car.photo.key, width: 200, height: 100, crop: :fill %>
+<% end %>

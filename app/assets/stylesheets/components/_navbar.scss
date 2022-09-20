@@ -1,10 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  // position: fixed;
-  // top: 0;
-  // width:100%;
-  // z-index: 999;
+  position: sticky;
+  top: 0;
+  height: 10vh;
+  width:100%;
+  z-index: 999;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -18,7 +19,7 @@
 .navbar-brand-title {
   width: 40px;
   color: $purple;
-  font-family: 'Berkshire Swash', cursive;
+  font-family: $headers-font
 }
 
 .nav-item a {

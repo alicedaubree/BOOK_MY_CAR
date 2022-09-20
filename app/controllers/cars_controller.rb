@@ -1,40 +1,26 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :set_car, only: [:show]
 
   def index
     if params[:query].present?
       sql_query = "cars.title @@ :query \
+      OR cars.address @@ :query \
       OR cars.description @@ :query"
-      @cars = Car.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @cars = Car.where(sql_query, query: "%#{params[:query]}%")
+      # @cars = Car.joins(:user).where(sql_query, query: "%#{params[:query]}%")
     else
       @cars = Car.all
     end
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
-        lng: car.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {car: car}), image_url: helpers.asset_url("pin_map.png"),
+        lng: car.longitude
       }
     end
   end
 
-  def new
-    @car = Car.new
-  end
-
-  def create
-    @car = Car.new(car_params)
-    @car.user = current_user
-    @car.address = params[:car][:address]
-    if @car.valid?
-      @car.save
-      redirect_to cars_path(@car)
-    else
-      render :new
-    end
-  end
-
   def show
+    @booking = Booking.new
     @marker_car = Car.where(id: @car.id)
     @markers = @marker_car.geocoded.map do |car|
       {
@@ -45,28 +31,14 @@ class CarsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-    @car.update(car_params)
-    redirect_to car_path(@car)
-  end
-
-  def destroy
-    @car.destroy
-    # No need for app/views/restaurants/destroy.html.erb
-    redirect_to root_path, status: :see_other
-  end
-
   private
 
-  def car_params
-    params.require(:car).permit(:title, :description, :available_for, :type_of_car, photos: [])
-  end
+  # def car_params
+  #   params.require(:car).permit(:title, :description, :available_for, :type_of_car, photos: [])
+  # end
 
   def set_car
-    @car = car.find(params[:id])
+    @car = Car.find(params[:id])
   end
 
 end
