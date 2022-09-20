@@ -58,9 +58,11 @@ user_olivier.save
   places: rand(1..5),
   mileage: Faker::Vehicle.mileage,
   gearbox: Faker::Vehicle.drive_type,
+  # latitude: Faker::Address.latitude,
+  # longitude: Faker::Address.longitude,
   air_conditionning: [true, false].sample,
   user_id: [user_olivier.id, user_silvia.id, user_evan.id].sample,
-  address: ["Chateau de Crémat", "22 rue bottero", "Aeroport de Nice", "Haut de Gambetta"].sample,
+  address: ["Chateau de Crémat, chemin de crémat, 06200 Nice", "22 rue bottero, 06000 Nice", "Aéroport de Nice", "10 rue Georges Doublet, 06100 Nice"].sample,
 )
 car_pic = URI.open(["https://auto-vicoigne-transaction.com/wp-content/uploads/2020/12/IMG_6112-1200x750.jpeg","https://freuromoney.com/wp-content/uploads/2020/10/a58e9dbe7fd6bd460571092defade1fc_clio-2460877_1920.jpg", "https://www.ouestfrance-auto.com/sites/default/files/160301_fiat_500s_01.jpg", "https://images.caradisiac.com/logos/4/5/0/4/194504/S0-europe-la-berline-premium-se-vend-mieux-que-la-generaliste-111778.jpg", "https://photo-voiture.motorlegend.com/hd/ferrari-f8-tributo-v8-3-9-720-ch-123063.jpg"].sample)
 car.photo.attach(io: car_pic, filename: "pic.jpg", content_type: "image/jpg")

@@ -1,0 +1,43 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <%= cl_image_tag @car.photo.key, crop: :fill, class: "d-block w-100"%>
+    </div>
+    <div class="col-12 col-lg-4 d-flex flex-column">
+      <h2 class="mx-2 mt-2"><strong><%= @car.title %></strong></h2>
+      <p class="mx-2"><%= @car.description %> </p>
+      <p class="mx-2">Proposé par :<%= cl_image_tag @car.user.photo.key, width: 40, height: 40, crop: :fill, class: "avatar-bordered dropdown-toggle mx-1" %></p>
+      <p class="mx-2 my-4"><i class="tag-type">Price per day:<%= @car.price_per_day %>$</i>
+      <p class="mx-2 my-4"><i class="tag-type">Mileage:<%= @car.mileage %></i>
+      <p class="mx-2 my-4"><i class="tag-type">Number of places:<%= @car.places %></i>
+      <p class="mx-2 my-4"><i class="tag-type">Gearbox:<%= @car.gearbox %></i>
+      <p class="mx-2 my-4"><i class="tag-type">Air conditionning:<%= @car.air_conditionning %></i>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col-12 col-lg-6">
+    <h3 class="text-center my-2"><strong>Localisation</strong></h3>
+    <p class="my-2">📍<em><%= @car.address %></em></p>
+    <div class="rounded-angle" style="width: 100%; height: 400px;"
+    class="map-index"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+    </div>
+  <div class="col-12 col-lg-6">
+    <h3 class="text-center my-2"><strong>Book it now !</strong></h3>
+    <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
+      <div id='car-booking-dates' data-unavailable="<%= @car.unavailable_dates.to_json %>">
+       <% if current_user.id != @car.user_id  %>
+       <%= simple_form_for([@car, @booking]) do |f| %>
+           <%= f.input :start_date, as: :string, type: :text, label: "Start date", required: false, input_html: {class: "datepicker"} %>
+           <%= f.input :end_date, as: :string, type: :text, label: "End date", required: false, input_html: {class: "datepicker"} %>
+           <%= f.submit "Book", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

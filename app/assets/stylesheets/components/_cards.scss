@@ -16,6 +16,8 @@
 
 .cards-index {
   background-color: white;
+  overflow: scroll;
+  height: 100vh;
 
 }
 
@@ -42,6 +44,7 @@
   font-size: 12px;
   opacity: .7;
   margin: 0;
+  color: $gray;
 }
 
 .card-car a {
