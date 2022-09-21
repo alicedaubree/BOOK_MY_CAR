@@ -1,0 +1,28 @@
+.banner {
+  background-image: url('background-image.jpg');
+  background-size: cover;
+  background-position: 50% 80%;
+  padding: 150px 0;
+}
+
+.banner h1 {
+  margin: 15px 0;
+  color: $purple;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.banner-square {
+  background-color: $white;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.banner h3 {
+  font-size: 18px;
+  color: $green;
+}
+
+.banner i {
+  font-style:normal!important;
+}

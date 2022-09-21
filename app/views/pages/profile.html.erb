@@ -1,1 +1,59 @@
-<p>hey</p>
+<% if current_user %>
+  <div class="container mt-5">
+  <h2><strong>My cars</strong></h2>
+  <div class="row">
+      <% current_user.cars.each do |car| %>
+      <div class="cards-profile my-5 col-12 col-lg-4">
+      <%= link_to(car_path(car.id)) do %>
+        <div class="card-car m-2">
+          <%=  cl_image_tag car.photo.key %>
+          <div class="card-car-infos p-3">
+            <div>
+              <h2 class="mb-2"><%= car.title %></h2>
+              <p><%= car.description %></p>
+            </div>
+          <%= cl_image_tag car.user.photo.key,  width: 40, height: 40, crop: :fill, class: "card-car-user avatar-bordered" %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+  <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+    <h2><strong>Bookings of my cars</strong></h2>
+    <% current_user.cars.each do |car| %>
+    <% car.bookings.each do |booking| %>
+      <div class="card-booking my-5" data-aos="flip-down">
+      <%= cl_image_tag booking.user.photo.key, crop: :fill, height: 100, width:100%>
+        <div class="card-booking-infos">
+          <h2>Booking from <%= booking.user.first_name %> of <%= link_to booking.car.title, car_path(booking.car.id) %></h2>
+          <p>from <%= booking.start_date %> to <%= booking.end_date %></p>
+        </div>
+      </div>
+    <% end %>
+    <% end %>
+    </div>
+
+    <div class="col-12 col-lg-6">
+    <h2><strong>My bookings</strong></h2>
+    <% current_user.bookings.each do |booking| %>
+      <div class="card-booking my-5" data-aos="flip-down">
+      <%= cl_image_tag booking.car.photo.key, id:"square", crop: :fill, height: 100, width:100 %>
+        <div class="card-booking-infos">
+          <h2>Your booking of <%= link_to booking.car.title, car_path(booking.car.id) %></h2>
+          <p>from <%= booking.start_date %> to <%= booking.end_date%></p>
+          <%= link_to(car_booking_path(booking.car.id, booking.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}) do%>
+          <p>Cancel booking</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  </div>
+<% else %>
+<%= link_to "Log in to see your profile", new_user_session_path, class: "nav-link" %>
+<% end %>

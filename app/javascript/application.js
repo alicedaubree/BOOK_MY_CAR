@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
 import { initFlatpickr } from "./plugins/flatpickr";
+import { calctotal } from "./plugins/total";
 
-initFlatpickr();
 
-window.addEventListener("turbo:load", function() {  initFlatpickr();});
+window.addEventListener("turbo:load", function() {  initFlatpickr(); calctotal()});
