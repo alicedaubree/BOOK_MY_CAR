@@ -7,6 +7,7 @@ class CarsController < ApplicationController
       OR cars.address @@ :query \
       OR cars.description @@ :query"
       @cars = Car.where(sql_query, query: "%#{params[:query]}%")
+      # If we want to use an another table like users.first_name
       # @cars = Car.joins(:user).where(sql_query, query: "%#{params[:query]}%")
     else
       @cars = Car.all
