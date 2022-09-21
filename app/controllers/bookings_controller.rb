@@ -6,16 +6,16 @@ class BookingsController < ApplicationController
       @booking.car = @car
       @booking.user = current_user
       if @booking.save!
-        redirect_to car_path(@car)
+        redirect_to profile_path
       else
         render :new
       end
     end
 
     def destroy
-      @booking = booking.find(params[:id])
+      @booking = Booking.find(params[:id])
       @booking.destroy
-      redirect_to car_path(@car), status: :see_other
+      redirect_to profile_path, status: :see_other
     end
 
     private

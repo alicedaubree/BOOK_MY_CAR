@@ -1,0 +1,16 @@
+.btn-flat {
+  color: $white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color: $purple;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  border: 0;
+  text-decoration: none;
+}
+
+.btn-flat:hover {
+  background-color: $green;
+  color: $white;
+}

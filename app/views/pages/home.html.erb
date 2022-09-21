@@ -1,2 +1,32 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner">
+  <div class="container">
+    <div class="col-10 col-lg-6 banner-square p-5">
+    <h1 class="mb-4">Book a car in a click</h1>
+    <h3 class="mb-5"><strong>Find the perfect car for the perfect ocasion</strong></h3>
+    <%= link_to "Search a car", cars_path, class: "mb-4 btn-flat" %>
+    </div>
+  </div>
+</div>
+<div class="container my-5">
+  <div class="row">
+  <h3 class="text-center my-5" id="home-title">They are waiting for you</h3>
+      <% @cars.last(6).each do |car| %>
+      <div class="cards-index col-12 col-lg-4">
+      <%= link_to(car_path(car.id)) do %>
+        <div class="card-car m-2">
+          <%=  cl_image_tag car.photo.key %>
+          <div class="card-car-infos p-3">
+            <div>
+              <h2 class="mb-2"><%= car.title %></h2>
+              <p><%= car.description %></p>
+            </div>
+          <%= cl_image_tag car.user.photo.key,  width: 40, height: 40, crop: :fill, class: "card-car-user avatar-bordered" %>
+        </div>
+      </div>
+      <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

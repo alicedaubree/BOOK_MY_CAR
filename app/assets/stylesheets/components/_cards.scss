@@ -14,10 +14,13 @@
   text-decoration: none;
 }
 
-.cards-index {
-  background-color: white;
+#scroll {
   overflow: scroll;
   height: 100vh;
+}
+
+.cards-index {
+  background-color: white;
 
 }
 
